@@ -37,3 +37,7 @@ Các cảm biến sẽ trả về các giá trị trong khoảng từ [a, b] a l
 -  Xây dựng phần mềm theo dõi tình trạng của những nơi được theo dõi, các thông số được phản hồi từ esp32 -> Cloud
 - Hệ thống tưới cây: Tưới theo tự động và tưới thử công bằng điều khiển qua app, dùng servo để hướng vòi bơm đến vị trí cần bơm
 - Cảm biến nắng mưa để thực hiện che đậy cho khu vực chứa cây
+
+- Cải thiện về AI
+    + Dự đoán xu hướng môi trường: AI có thể phân tích dữ liệu môi trường qua nhiều ngày hoặc tuần để dự đoán nhu cầu tưới của cây dựa trên các điều kiện thay đổi
+    + 
