@@ -1,52 +1,25 @@
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "esp_log.h"
-#include "adc_light_sensor.h"       // Header cho cảm biến ánh sáng
-#include "moisture.h"    // Header cho cảm biến độ ẩm
+#include "i2c_eeprom.h"
+#include "oneshot_read_main.h"
+void app_main(void) {
+    adc_oneshot_unit_handle_t adc_handle;
+    adc_oneshot_unit_init_cfg_t init_config = {
+        .unit_id = ADC_UNIT_1,
+    };
+    ESP_ERROR_CHECK(adc_oneshot_new_unit(&init_config, &adc_handle));
 
-#define SENSOR_1_PIN 4  // Chân GPIO cho cảm biến ánh sáng
-#define SENSOR_2_PIN 5  // Chân GPIO cho cảm biến độ ẩm
-#define SENSOR_3_PIN 6  // Chân GPIO cho cảm biến giả lập (hoặc cảm biến khác)
+    adc_cali_handle_t cali_handle = NULL;
+    bool calibrated = adc_calibration_init(ADC_UNIT_1, ADC_CHANNEL_4, ADC_ATTEN_DB_12, &cali_handle);
 
-static const char *TAG = "SENSOR_TASKS";
+    adc_configure_channel(&adc_handle, ADC_CHANNEL_4, ADC_ATTEN_DB_12);
 
-// Task cho cảm biến ánh sáng
-void sensor_1_task(void *pvParameters) {
     while (1) {
-        int light_adc, light_voltage;
-        light_read(&light_adc, &light_voltage);
-        ESP_LOGI(TAG, "Light Sensor: ADC=%d, Voltage=%dmV", light_adc, light_voltage);
-        vTaskDelay(pdMS_TO_TICKS(1000));  // Đọc mỗi giây
+        adc_read_data(adc_handle, ADC_CHANNEL_4, cali_handle);
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
-}
 
-// Task cho cảm biến độ ẩm
-void sensor_2_task(void *pvParameters) {
-    while (1) {
-        int moisture_adc, moisture_voltage;
-        moisture_read(&moisture_adc, &moisture_voltage);
-        ESP_LOGI(TAG, "Moisture Sensor: ADC=%d, Voltage=%dmV", moisture_adc, moisture_voltage);
-        vTaskDelay(pdMS_TO_TICKS(2000));  // Đọc mỗi 2 giây
-    }
-}
-
-// Task cho cảm biến giả lập (hoặc cảm biến khác)
-void sensor_3_task(void *pvParameters) {
-    while (1) {
-        int data = rand() % 100;  // Trả về giá trị ngẫu nhiên (giả lập)
-        ESP_LOGI(TAG, "Sensor 3 Data: %d", data);
-        vTaskDelay(pdMS_TO_TICKS(500));  // Đọc mỗi 0.5 giây
-    }
-}
-
-void app_main() {
-    ESP_LOGI(TAG, "Initializing tasks...");
-
-    // Tạo các task cho từng cảm biến
-    xTaskCreate(sensor_1_task, "Light Sensor Task", 2048, NULL, 5, NULL);
-    xTaskCreate(sensor_2_task, "Moisture Sensor Task", 2048, NULL, 5, NULL);
-    xTaskCreate(sensor_3_task, "Sensor 3 Task", 2048, NULL, 5, NULL);
-
-    ESP_LOGI(TAG, "Tasks started!");
+    adc_calibration_deinit(cali_handle);
+    ESP_ERROR_CHECK(adc_oneshot_del_unit(adc_handle));
 }

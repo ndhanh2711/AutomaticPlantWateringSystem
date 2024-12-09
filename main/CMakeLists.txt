@@ -1,2 +1,2 @@
-idf_component_register(SRCS "moisture.c" "main.c" "adc_light_sensor.c"
+idf_component_register(SRCS "main.c" 
                     INCLUDE_DIRS ".")
