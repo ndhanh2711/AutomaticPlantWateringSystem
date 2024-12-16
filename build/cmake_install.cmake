@@ -1,8 +1,8 @@
-# Install script for directory: C:/Espressif/frameworks/esp-idf-v5.3.1/examples/get-started/AutomaticPlantWateringSystem
+# Install script for directory: C:/Espressif/frameworks/AutomaticPlantWateringSystem
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/AutomaticPlantWateringSystem")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/AutomaticPlantWateringSystemAutomaticPlantWateringSystem")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,8 +38,9 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Espressif/frameworks/esp-idf-v5.3.1/examples/get-started/AutomaticPlantWateringSystem/build/esp-idf/cmake_install.cmake")
+  # Include the install script for each subdirectory.
+  include("C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/esp-idf/cmake_install.cmake")
+
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Espressif/frameworks/esp-idf-v5.3.1/examples/get-started/AutomaticPlantWateringSystem/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

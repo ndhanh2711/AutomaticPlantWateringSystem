@@ -5,18 +5,18 @@ cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
   "C:/Espressif/frameworks/esp-idf-v5.3.1/components/bootloader/subproject"
-  "C:/Espressif/frameworks/esp-idf-v5.3.1/examples/get-started/AutomaticPlantWateringSystem/build/bootloader"
-  "C:/Espressif/frameworks/esp-idf-v5.3.1/examples/get-started/AutomaticPlantWateringSystem/build/bootloader-prefix"
-  "C:/Espressif/frameworks/esp-idf-v5.3.1/examples/get-started/AutomaticPlantWateringSystem/build/bootloader-prefix/tmp"
-  "C:/Espressif/frameworks/esp-idf-v5.3.1/examples/get-started/AutomaticPlantWateringSystem/build/bootloader-prefix/src/bootloader-stamp"
-  "C:/Espressif/frameworks/esp-idf-v5.3.1/examples/get-started/AutomaticPlantWateringSystem/build/bootloader-prefix/src"
-  "C:/Espressif/frameworks/esp-idf-v5.3.1/examples/get-started/AutomaticPlantWateringSystem/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/bootloader"
+  "C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/bootloader-prefix"
+  "C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/bootloader-prefix/tmp"
+  "C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/bootloader-prefix/src"
+  "C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/Espressif/frameworks/esp-idf-v5.3.1/examples/get-started/AutomaticPlantWateringSystem/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "C:/Espressif/frameworks/esp-idf-v5.3.1/examples/get-started/AutomaticPlantWateringSystem/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

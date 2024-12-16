@@ -41,3 +41,4 @@ Các cảm biến sẽ trả về các giá trị trong khoảng từ [a, b] a l
 - Cải thiện về AI
     + Dự đoán xu hướng môi trường: AI có thể phân tích dữ liệu môi trường qua nhiều ngày hoặc tuần để dự đoán nhu cầu tưới của cây dựa trên các điều kiện thay đổi
     + 
+
