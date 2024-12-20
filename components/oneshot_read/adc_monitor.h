@@ -118,4 +118,5 @@ esp_err_t adc_del_continuous_monitor(adc_monitor_handle_t monitor_handle);
 
 #ifdef __cplusplus
 }
+
 #endif

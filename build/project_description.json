@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "AutomaticPlantWateringSystem",
-    "project_version":    "ecfd91e-dirty",
+    "project_version":    "f8e0cf1-dirty",
     "project_path":       "C:/Espressif/frameworks/AutomaticPlantWateringSystem",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.3.1",
     "build_dir":          "C:/Espressif/frameworks/AutomaticPlantWateringSystem/build",

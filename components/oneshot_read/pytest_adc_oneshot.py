@@ -25,5 +25,6 @@ def test_adc_oneshot(dut: Dut) -> None:
     ],
     indirect=True,
 )
+
 def test_adc_oneshot_esp32c2_xtal_26mhz(dut: Dut) -> None:
     dut.expect(r'EXAMPLE: ADC1 Channel\[(\d+)\] Raw Data: (\d+)', timeout=5)

@@ -3,10 +3,20 @@
 #include "driver/i2c.h"  // for I2C communication
 #include "esp_log.h"     // for ESP_LOGI
 #include "i2c-lcd.h"
+#include "driver/ledc.h"
+#include "esp_err.h"
+
 
 #define TAG "LCD"                  // Logging tag
 #define I2C_MASTER_NUM I2C_NUM_0   // Define I2C port
 #define SLAVE_ADDRESS_LCD 0x27     // I2C address of the LCD (modify if needed)
+
+
+#define LEDC_TIMER          LEDC_TIMER_0
+#define LEDC_MODE           LEDC_LOW_SPEED_MODE
+#define LEDC_OUTPUT_IO      (4) // GPIO4
+#define LEDC_CHANNEL        LEDC_CHANNEL_0
+#define LEDC_FREQUENCY      (5000) // Frequency in Hz
 
 // Send a command to the LCD
 static esp_err_t i2c_master_init(void)
@@ -113,6 +123,56 @@ void lcd_send_string(char *str) {
     }
 }
 
+// Hàm khởi tạo LEDC
+void init_ledc(void) {
+    // Cấu hình bộ định thời LEDC
+    ledc_timer_config_t ledc_timer = {
+        .speed_mode       = LEDC_MODE,
+        .timer_num        = LEDC_TIMER,
+        .duty_resolution  = LEDC_TIMER_13_BIT, // Độ phân giải 13 bit
+        .freq_hz          = LEDC_FREQUENCY,   // Tần số 5 kHz
+        .clk_cfg          = LEDC_AUTO_CLK
+    };
+    ESP_ERROR_CHECK(ledc_timer_config(&ledc_timer));
+
+    // Cấu hình kênh LEDC
+    ledc_channel_config_t ledc_channel = {
+        .gpio_num       = LEDC_OUTPUT_IO,
+        .speed_mode     = LEDC_MODE,
+        .channel        = LEDC_CHANNEL,
+        .intr_type      = LEDC_INTR_DISABLE,
+        .timer_sel      = LEDC_TIMER,
+        .duty           = 0, // Duty cycle ban đầu
+        .hpoint         = 0
+    };
+    ESP_ERROR_CHECK(ledc_channel_config(&ledc_channel));
+}
+
+// Hàm thay đổi duty cycle
+void set_duty_cycle(int level) {
+    uint32_t duty = 0;
+    switch (level) {
+        case 1:
+            duty = 8192; // 33% duty cycle
+            printf("Setting duty cycle to 33%%\n");
+            break;
+        case 2:
+            duty = 16384; // 66% duty cycle
+            printf("Setting duty cycle to 66%%\n");
+            break;
+        case 3:
+            duty = 8191 * 2; // 100% duty cycle
+            printf("Setting duty cycle to 100%%\n");
+            break;
+        default:
+            printf("Invalid level! Please use 1, 2, or 3.\n");
+            return;
+    }
+    ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL, duty));
+    ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, LEDC_CHANNEL));
+}
+
+
 // Main application entry point
 void app_main(void) {
     ESP_ERROR_CHECK(i2c_master_init());
@@ -136,5 +196,20 @@ void app_main(void) {
     // sprintf(buffer, "Val=%.2f", num);  // Format float to 2 decimal places
     // lcd_put_cur(0, 0);
     // lcd_send_string(buffer);
-}
 
+
+
+    //Output bơm
+    // Khởi tạo LEDC
+    init_ledc();
+
+    // Thay đổi duty cycle dựa trên tham số truyền vào
+    set_duty_cycle(1); // 33%
+    vTaskDelay(pdMS_TO_TICKS(3000)); // Delay 1 giây
+
+    set_duty_cycle(2); // 66%
+    vTaskDelay(pdMS_TO_TICKS(3000)); // Delay 1 giây
+
+    set_duty_cycle(3); // 100%
+    vTaskDelay(pdMS_TO_TICKS(3000)); // Delay 1 giây
+}
