@@ -23,14 +23,13 @@ Hệ thống tưới cây tự động **Automatic Plant Watering System** giúp
 
 ## **Sơ đồ khối**
 ### **Block Diagram**
-```mermaid
+
 graph TD;
   A[Xác định các yếu tố ảnh hưởng đến cây trồng] --> B[Các cảm biến thu thập dữ liệu từ môi trường];
   B --> C[AI xử lí các thông số và đưa ra quyết định];
   C --> D{0: Không tưới | 1: Tưới cây};
   D --> E[Máy tính xác định lượng nước cần tưới];
   E --> F[Hoàn tất và Kiểm tra];
-```
 
 ### **Chi tiết từng khối**
 1. **Cảm biến**: 
