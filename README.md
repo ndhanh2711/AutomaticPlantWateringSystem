@@ -104,7 +104,7 @@ Mỗi loại cây có ngưỡng nhiệt độ, độ ẩm khác nhau. Hệ thố
 
 ## 📁 Cấu trúc dự án
 
-
+```
 graph TD;
 .vscode/
 components/
@@ -135,7 +135,7 @@ CMakelists.txt/
 README.md/
 sdkconfig/
 
-
+```
 ---
 
 ## **Những thách thức 💪 và giải pháp 💡**
