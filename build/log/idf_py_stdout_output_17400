@@ -1,5 +1,0 @@
-[1/4] cmd.exe /C "cd /D C:\Espressif\frameworks\AutomaticPlantWateringSystem\build\esp-idf\esptool_py && C:\Espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.3.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/partition_table/partition-table.bin C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/AutomaticPlantWateringSystem.bin"
-AutomaticPlantWateringSystem.bin binary size 0x32a90 bytes. Smallest app partition is 0x100000 bytes. 0xcd570 bytes (80%) free.
-[2/4] Performing build step for 'bootloader'
-[1/1] cmd.exe /C "cd /D C:\Espressif\frameworks\AutomaticPlantWateringSystem\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.3.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 C:/Espressif/frameworks/AutomaticPlantWateringSystem/build/bootloader/bootloader.bin"
-Bootloader binary size 0x6880 bytes. 0x780 bytes (7%) free.
