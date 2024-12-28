@@ -14,7 +14,7 @@
 
 #define LEDC_TIMER          LEDC_TIMER_0
 #define LEDC_MODE           LEDC_LOW_SPEED_MODE
-#define LEDC_OUTPUT_IO      (4) // GPIO4
+#define LEDC_OUTPUT_IO      (15) // GPIO4
 #define LEDC_CHANNEL        LEDC_CHANNEL_0
 #define LEDC_FREQUENCY      (5000) // Frequency in Hz
 
@@ -175,18 +175,18 @@ void set_duty_cycle(int level) {
 
 // Main application entry point
 void app_main(void) {
-    ESP_ERROR_CHECK(i2c_master_init());
-    ESP_LOGI(TAG, "I2C initialized successfully");
+    // ESP_ERROR_CHECK(i2c_master_init());
+    // ESP_LOGI(TAG, "I2C initialized successfully");
 
-    lcd_init();
-    lcd_clear();
+    // lcd_init();
+    // lcd_clear();
 
-    // Example 1: Display static text
-    lcd_put_cur(0, 0);
-    lcd_send_string("Hello World!");
+    // // Example 1: Display static text
+    // lcd_put_cur(0, 0);
+    // lcd_send_string("Hello World!");
 
-    lcd_put_cur(1, 0);
-    lcd_send_string("from ESP32");
+    // lcd_put_cur(1, 0);
+    // lcd_send_string("from ESP32");
 
     // // Example 2: Display a formatted value
     // char buffer[16];

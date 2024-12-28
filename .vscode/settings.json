@@ -2,5 +2,7 @@
     "idf.adapterTargetName": "esp32",
     "files.associations": {
         "oneshot_read_main.h": "c"
-    }
+    },
+    "idf.flashType": "UART",
+    "idf.portWin": "COM6"
 }
